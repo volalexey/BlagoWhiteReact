@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import { CampaignsContext } from "../Context/CampaignsContext";
+import { CampaignsContext } from "../../Context/CampaignsContext";
 import {NavLink} from "react-router-dom";
 
 const CampaignItem = ({campaign}) => {

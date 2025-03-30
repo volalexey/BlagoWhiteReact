@@ -1,5 +1,5 @@
 import { CampaignProvider } from "../Context/CampaignsContext";
-import CampaignList from "../Components/CampaignList";
+import CampaignList from "../Components/Campaign/CampaignList";
 
 const Campaigns = () => {
     return (

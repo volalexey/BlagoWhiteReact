@@ -6,7 +6,8 @@ export const CampaignsContext = createContext();
 export const CampaignProvider = ({ children }) => {
     const [campaigns, setCampaigns] = useState([]);
 
-    const addCpampaign = async (campaign) => {
+    //add campaign
+    const addCampaign = async (campaign) => {
         try{
             const responce = await axios.post('http://localhost:5211/api/campaigns', campaign);
             setCampaigns([...campaigns, responce.data]);
@@ -16,6 +17,7 @@ export const CampaignProvider = ({ children }) => {
         }
     }
 
+    //delete campaign
     const deleteCampaign = async (id) => {
         try{
             await axios.delete(`http://localhost:5211/api/campaigns/${id}`);
@@ -26,6 +28,7 @@ export const CampaignProvider = ({ children }) => {
         }
     }
 
+    //get campaigns
     const fetchdata = async () =>{
         try{
             const responce = await axios.get('http://localhost:5211/api/campaigns');
@@ -41,7 +44,7 @@ export const CampaignProvider = ({ children }) => {
     }, []);
 
     return (
-        <CampaignsContext.Provider value={{ campaigns, addCpampaign, deleteCampaign }}>
+        <CampaignsContext.Provider value={{ campaigns, addCampaign, deleteCampaign }}>
             {children}
         </CampaignsContext.Provider>
 

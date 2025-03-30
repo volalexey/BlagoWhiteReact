@@ -1,6 +1,7 @@
 import './App.css';
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import { Campaigns } from './Pages/Campaigns';
+import { AddCampaign } from './Pages/AddCampaign';
 import { MainLayout } from './Layouts/MainLayout';
 import { Welcome } from './Pages/Welcome';
 
@@ -9,6 +10,7 @@ function App() {
     <Route path="/" element={<MainLayout />} >
       <Route index element={<Welcome />} />
       <Route path="/campaigns" element={<Campaigns />} />
+      <Route path="/campaigns/add" element={<AddCampaign />} />
     </Route>
     
   ));

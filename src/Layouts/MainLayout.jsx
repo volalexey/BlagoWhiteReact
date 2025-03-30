@@ -7,6 +7,7 @@ const MainLayout = () => {
             <header className="main-header">
                 Navbar
                 <NavLink to="/campaigns" className="btn">Перейти до кампаній</NavLink>
+                <NavLink to="/campaigns/add" className="btn">Створити кампанію</NavLink>
             </header>
             <main>
                 <Outlet/>
