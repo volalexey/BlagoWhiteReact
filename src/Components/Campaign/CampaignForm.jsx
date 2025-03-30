@@ -3,16 +3,48 @@ import { useContext, useEffect, useState } from 'react';
 import { CampaignsContext } from '../../Context/CampaignsContext';
 import { useNavigate } from 'react-router-dom';
 
-export const CampaignForm = () => {
+export const CampaignForm = ({type}) => {
     const navigate = useNavigate();
     const {
         register,
-        handleSubmit
+        handleSubmit,
+        setValue
     } = useForm();
+    const [campaign, setCampaign] = useState({});
 
-    const {addCampaign} = useContext(CampaignsContext);
+    const {addCampaign, getCampaugnById, editCampaign} = useContext(CampaignsContext);
+
+    useEffect(() => {
+        fetchCampaign();
+    }, [type]);
+
+    const fetchCampaign = async () => {
+        if (type !== 'add') {
+            const existingCampaign = await getCampaugnById(type);
+            console.log(existingCampaign);
+
+            if (existingCampaign) {
+                setCampaign(existingCampaign);
+                
+                Object.keys(existingCampaign).forEach(key => {
+                    setValue(key, existingCampaign[key]);
+                });
+            }
+        }
+    }
 
     const onSubmit = (values) =>{
+        if(type === 'add'){
+            console.log("adding campaign");
+            handleAdd(values);
+        }
+        else{
+            console.log("editing campaign");
+            handleEdit(values);
+        }
+    }
+
+    const handleAdd = (values) =>{
         const campaign = {
             name: values.name,
             description: values.description,
@@ -27,6 +59,12 @@ export const CampaignForm = () => {
 
         navigate('/campaigns');
     }
+
+    const handleEdit = (values) => {
+        const updatedCampaign = { ...campaign, ...values };
+        editCampaign(updatedCampaign.id, updatedCampaign);
+        navigate(`/campaigns/${updatedCampaign.id}`);
+    };
 
     return(
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -61,7 +99,7 @@ export const CampaignForm = () => {
                 <input type='text' id='Images' {...register("socialUrls", {required:true})}/>
             </div>
             <div>
-                <button type='submit'>Create Campaign</button>
+                <button type='submit'>{type === 'add' ? "Create Campaign" : "Edit Campaign"}</button>
             </div>
         </form>
     )

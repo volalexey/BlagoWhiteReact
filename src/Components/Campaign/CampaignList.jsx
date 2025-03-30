@@ -4,6 +4,7 @@ import { CampaignsContext } from "../../Context/CampaignsContext";
 
 const CampaignList = () => {
     const { campaigns } = useContext(CampaignsContext);
+    console.log(campaigns)
     return (
         <ul>
             {campaigns.map(campaign => <CampaignItem key={campaign.id} campaign={campaign} />)}

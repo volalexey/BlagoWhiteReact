@@ -5,7 +5,7 @@ const AddCampaign = () =>{
     return(
         <CampaignProvider>
             <h1>Додавання кампаній</h1>
-            <CampaignForm/>
+            <CampaignForm type={'add'}/>
         </CampaignProvider>
 
     )

@@ -17,11 +17,32 @@ export const CampaignProvider = ({ children }) => {
         }
     }
 
+    const getCampaugnById = async(id) =>{
+        try{
+            const response = await axios.get(`http://localhost:5211/api/campaigns/${id}`);
+            return response.data;
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
+
     //delete campaign
     const deleteCampaign = async (id) => {
         try{
             await axios.delete(`http://localhost:5211/api/campaigns/${id}`);
             setCampaigns(campaigns.filter(campaign => campaign.id !== id));
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
+
+    //edit campaign
+    const editCampaign = async (id, updatedCampaign) => {
+        try{
+            const response = await axios.put(`http://localhost:5211/api/campaigns/${id}`, updatedCampaign);
+            setCampaigns(campaigns.map(campaign => campaign.id === id ? response.data : campaign));
         }
         catch(e){
             console.log(e);
@@ -44,7 +65,7 @@ export const CampaignProvider = ({ children }) => {
     }, []);
 
     return (
-        <CampaignsContext.Provider value={{ campaigns, addCampaign, deleteCampaign }}>
+        <CampaignsContext.Provider value={{ campaigns, addCampaign, deleteCampaign, getCampaugnById, editCampaign }}>
             {children}
         </CampaignsContext.Provider>
 
