@@ -12,7 +12,7 @@ export const CampaignForm = ({type}) => {
     } = useForm();
     const [campaign, setCampaign] = useState({});
 
-    const {addCampaign, getCampaugnById, editCampaign} = useContext(CampaignsContext);
+    const {addCampaign, getCampaignById, editCampaign} = useContext(CampaignsContext);
 
     useEffect(() => {
         fetchCampaign();
@@ -20,7 +20,7 @@ export const CampaignForm = ({type}) => {
 
     const fetchCampaign = async () => {
         if (type !== 'add') {
-            const existingCampaign = await getCampaugnById(type);
+            const existingCampaign = await getCampaignById(type);
             console.log(existingCampaign);
 
             if (existingCampaign) {

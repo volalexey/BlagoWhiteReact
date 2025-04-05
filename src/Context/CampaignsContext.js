@@ -17,7 +17,7 @@ export const CampaignProvider = ({ children }) => {
         }
     }
 
-    const getCampaugnById = async(id) =>{
+    const getCampaignById = async(id) =>{
         try{
             const response = await axios.get(`http://localhost:5211/api/campaigns/${id}`);
             return response.data;
@@ -65,7 +65,7 @@ export const CampaignProvider = ({ children }) => {
     }, []);
 
     return (
-        <CampaignsContext.Provider value={{ campaigns, addCampaign, deleteCampaign, getCampaugnById, editCampaign }}>
+        <CampaignsContext.Provider value={{ campaigns, addCampaign, deleteCampaign, getCampaignById, editCampaign }}>
             {children}
         </CampaignsContext.Provider>
 

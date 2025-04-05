@@ -6,6 +6,7 @@ import { MainLayout } from './Layouts/MainLayout';
 import { Welcome } from './Pages/Welcome';
 import {SimpleCampaign} from './Pages/SimpleCampaign';
 import { EditCampaign } from './Pages/EditCampaign';
+import { AddDonation } from './Pages/AddDonation';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route path="/campaigns/add" element={<AddCampaign />} />
       <Route path="/campaigns/:id" element={<SimpleCampaign />} />
       <Route path="/campaigns/edit/:id" element={<EditCampaign />} />
+      <Route path="/campaigns/donate/:id" element={<AddDonation />} />
     </Route>
     
   ));
