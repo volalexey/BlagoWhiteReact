@@ -1,0 +1,19 @@
+.main-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn-href{
+    margin: 0 5px;
+    background-color: aqua;
+}
+.btn-exit{
+    margin-left: 10px;
+    background-color: red;
+    font-size: 16px;
+}
+.btn-register{
+    margin-left: 10px;
+    background-color: green;
+    font-size: 16px;
+}

@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { DonationContext } from "../../Context/DonationContext";
 import { CampaignsContext } from "../../Context/CampaignsContext";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from '../../Context/UserContext';
 
 export const DonationForm= ({campaignId}) =>{
     const navigate = useNavigate();
@@ -10,6 +11,7 @@ export const DonationForm= ({campaignId}) =>{
     const [campaign, setCampaign] = useState({});
     const { addDonation } = useContext(DonationContext);
     const { getCampaignById } = useContext(CampaignsContext);
+    const {user} = useContext(UserContext);
 
     const onSubmit = (values) => {
         handleAdd(values);
@@ -28,11 +30,12 @@ export const DonationForm= ({campaignId}) =>{
 
     const handleAdd = (values) => {
         const donation = {
-            name: values.name,
+            name: user.name,
             campaignId: parseInt(campaign.id),
             amount: parseInt(values.amount),
             message: values.message,
-            email: values.email
+            email: user.email,
+            userId: user.id
         }
         addDonation(donation);
         console.log(donation);
@@ -54,14 +57,6 @@ export const DonationForm= ({campaignId}) =>{
             <div >
                 <label htmlFor="amount">Amount</label>
                 <input type="number" {...register("amount")} />
-            </div>
-            <div >
-                <label htmlFor="name">Your name</label>
-                <input type="text" {...register("name")} id="name" />
-            </div>
-            <div>
-                <label htmlFor="email">Your Email</label>
-                <input type="email" {...register("email")} id="email" />
             </div>
             <div>
                 <label htmlFor="message">Message</label>

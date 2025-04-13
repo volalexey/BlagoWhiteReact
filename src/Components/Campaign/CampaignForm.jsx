@@ -2,6 +2,7 @@ import {useForm} from 'react-hook-form';
 import { useContext, useEffect, useState } from 'react';
 import { CampaignsContext } from '../../Context/CampaignsContext';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../Context/UserContext';
 
 export const CampaignForm = ({type}) => {
     const navigate = useNavigate();
@@ -12,6 +13,7 @@ export const CampaignForm = ({type}) => {
     } = useForm();
     const [campaign, setCampaign] = useState({});
 
+    const {user} = useContext(UserContext);
     const {addCampaign, getCampaignById, editCampaign} = useContext(CampaignsContext);
 
     useEffect(() => {
@@ -52,7 +54,8 @@ export const CampaignForm = ({type}) => {
             category: values.category,
             createdAt: new Date().toISOString(),
             imageUrl: values.imageUrl,
-            socialUrls: values.socialUrls
+            socialUrls: values.socialUrls,
+            creatorId: user.id
         }
         addCampaign(campaign);
         console.log(campaign);
@@ -62,7 +65,7 @@ export const CampaignForm = ({type}) => {
 
     const handleEdit = (values) => {
         const updatedCampaign = { ...campaign, ...values };
-        editCampaign(updatedCampaign.id, updatedCampaign);
+        editCampaign(updatedCampaign.id, updatedCampaign, user.id);
         navigate(`/campaigns/${updatedCampaign.id}`);
     };
 
@@ -82,8 +85,8 @@ export const CampaignForm = ({type}) => {
                     id="category"
                     {...register("category")}
                 >
-                    <option value={1}>Blabalbla</option>
-                    <option value={0}>Blebleble</option>
+                    <option value="Blabalbla">Blabalbla</option>
+                    <option value="Blebleble">Blebleble</option>
                 </select>
             </div>
             <div>

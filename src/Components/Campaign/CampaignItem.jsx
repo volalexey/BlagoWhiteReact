@@ -2,22 +2,26 @@ import React, {useContext, useState} from "react";
 import { CampaignsContext } from "../../Context/CampaignsContext";
 import {NavLink} from "react-router-dom";
 import "./Style/CampaignItem.css";
+import formatDate from "../../Utils/DateFormater";
 
 const CampaignItem = ({campaign}) => {
+
+    const date = formatDate(campaign.createdAt);
+
     return (
         <li className="div-campaign-item">
-            <div className="div-campaign-image">
-                <img src={campaign.imageUrl} alt="Popa" className="img-campaign-image" />
+            <div className="div-campaign-item-image">
+                <img src={campaign.imageUrl} alt="Popa" className="img-campaign-item-image" />
                 <hr className="hr-image-raised"/>
                 <div className="div-raised">
-                    <div>{campaign.raised}</div>
-                    <div>{campaign.destination}</div>
+                    <div>Зібрано: <span>{campaign.raised}</span></div>
+                    <div>Ціль: <span>{campaign.destination}</span></div>
                 </div>
             </div>
-            <div className="div-campaign-info">
-                <div className="div-campaign-info-top">
+            <div className="div-campaign-item-info">
+                <div className="div-campaign-item-info-top">
                     <div className="div-campaign-category">{campaign.category}</div>
-                    <div className="div-campaign-status">{campaign.createdAt}</div>
+                    <div className="div-campaign-status">{date}</div>
                 </div>
                 <div className="div-campaign-title">{campaign.name}</div>
                 <div className="div-campaign-description">{campaign.description}</div>

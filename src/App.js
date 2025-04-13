@@ -7,6 +7,9 @@ import { Welcome } from './Pages/Welcome';
 import {SimpleCampaign} from './Pages/SimpleCampaign';
 import { EditCampaign } from './Pages/EditCampaign';
 import { AddDonation } from './Pages/AddDonation';
+import { RequireAuth } from './Middleware/RequireAuth';
+import { UserProvider } from './Context/UserContext';
+import { AuthLogin } from './Pages/AuthLogin';
 
 
 function App() {
@@ -14,18 +17,24 @@ function App() {
     <Route path="/" element={<MainLayout />} >
       <Route index element={<Welcome />} />
       <Route path="/campaigns" element={<Campaigns />} />
-      <Route path="/campaigns/add" element={<AddCampaign />} />
+      <Route path="/campaigns/add" element={<RequireAuth><AddCampaign /></RequireAuth> } />
       <Route path="/campaigns/:id" element={<SimpleCampaign />} />
       <Route path="/campaigns/edit/:id" element={<EditCampaign />} />
-      <Route path="/campaigns/donate/:id" element={<AddDonation />} />
+      <Route path="/campaigns/donate/:id" element={<RequireAuth><AddDonation /></RequireAuth> } />
+
+      <Route path="/login" element={<AuthLogin type={"login"} />} />
+      <Route path="/register" element={<AuthLogin type={"register"} />} />
     </Route>
     
   ));
 
   return (
-    <div className="App">
-      <RouterProvider router={router} />
-    </div>
+    <UserProvider>
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
+    </UserProvider>
+    
   );
 }
 
