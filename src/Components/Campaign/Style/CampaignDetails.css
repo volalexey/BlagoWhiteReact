@@ -1,0 +1,74 @@
+.details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.div-details-main-info{
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+}
+.img-details-main-info{
+    width: 90%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.div-details-main-info-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    padding: 10px 0;
+}
+.div-details-category{
+    font-weight: bold;
+    font-size: 18px;
+    color: gray;
+}
+.div-details-name{
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+.div-details-date{
+    font-weight: bold;
+    font-size: 18px;
+    color: #696969;
+}
+.div-details-creator{
+    font-weight: bold;
+    font-size: 18px;
+}
+.div-details-raised-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin: 10px 0;
+}
+.div-details-raised-hr{
+    margin: 5px 25px;
+    width: 50%;
+    border: 3px solid;
+    border-image: linear-gradient(to right, lightgreen, lightgray) 1;
+}
+.div-details-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin-top: 15px;
+}
+.div-details-buttons > *{
+    margin-right: 15px;
+}
+.btn-details-donate{
+    background-color: #81c700;
+}
+.btn-details-close{
+    background-color: #ff0000;
+    font-size: 16px;
+}
+.btn-details-edit{
+    background-color: #ffae00;
+}

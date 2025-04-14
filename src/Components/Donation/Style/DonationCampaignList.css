@@ -1,0 +1,25 @@
+.donation-campaign-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.ul-donation-list{
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+    width: 100%;
+}
+.ul-donation-list:last-child{
+    border-bottom: 2px solid #ccc;
+}
+.li-donation-list{
+    border-top: 2px solid #ccc;
+    padding: 10px 0;
+}
+.li-donation-list > div{
+ margin: 0 15px;
+}

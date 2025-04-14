@@ -3,18 +3,21 @@ import { CampaignsContext } from "../../Context/CampaignsContext";
 import {NavLink, useNavigate} from "react-router-dom";
 import DonationCampaignList from "../Donation/DonationCampaignList";
 import { UserContext } from "../../Context/UserContext";
-import { set } from "react-hook-form";
+import "./Style/CampaignDetails.css";
+import formatDate from "../../Utils/DateFormater";
 
 const CampaignDetails = ({id}) =>{
     const {getCampaignById, deleteCampaign} = useContext(CampaignsContext);
     const [campaign, setCampaign] = useState({});
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [date, setDate] = useState("");
 
     const {user} = useContext(UserContext);
     const [isCreator, setIsCreator] = useState(false);
 
     const navigate = useNavigate();
+    console.log(images);
 
     const handleDelete = async () => {
         await deleteCampaign(id, user.id);
@@ -39,6 +42,8 @@ const CampaignDetails = ({id}) =>{
             const response = await getCampaignById(id);
             setCampaign(response);
             setLoading(false);
+            
+            
         };
     
         fetchData();
@@ -51,45 +56,58 @@ const CampaignDetails = ({id}) =>{
         }
     }, [campaign, user]);
     
-    //images
+    //images & date
     useEffect(() => {
         if (campaign.socialUrls) {
             const images = campaign.socialUrls
                 .split(" ")
-                .map((url, index) => <img key={index} src={url} alt="Popa" />);
+                .map((url, index) => <img className="img-details-image" key={index} src={url} alt="socialImage" />);
             setImages(images);
+        }
+        if(campaign){
+            setDate(formatDate(campaign.createdAt));
         }
     }, [campaign]);
 
     if (loading) return <div>Loading...</div>;
 
     return (
-        <div>
-            <div>
-                <img src={campaign.imageUrl} alt="Popa" />
-                <div>
-                    <div>{campaign.category}</div>
-                    <div>{campaign.name}</div>
+        <div className="div-details">
+            <div className="div-details-main-info">
+                <img src={campaign.imageUrl} alt="MainImage" className="img-details-main-info"/>
+                <div className="div-details-main-info-text">
+                    <div className="div-details-category">Категорія: {campaign.category}</div>
+                    <div className="div-details-name">{campaign.name}</div>
 
-                    <div>Здійснює: {campaign.user.name}</div>
+                    <div className="div-details-date">Розпочато: {date}</div>
+                    <div className="div-details-creator">Здійснює: {campaign.user.name}</div>
 
-                    <div>
-                        <div>Зібрано {campaign.raised}</div>
-                        <div>Ціль {campaign.destination}</div>
+                    <div className="div-details-raised-info">
+                        <div className="div-details-raiserd">Зібрано {campaign.raised}</div>
+                        <hr className="div-details-raised-hr"/>
+                        <div className="div-details-desctination">Ціль {campaign.destination}</div>
                     </div>
-                    <NavLink to={`/campaigns/donate/${campaign.id}`} className="btn">Підтримати</NavLink>
-                    {isCreator && <button onClick={() => handleDelete()}>Закрити кампанію</button>}
-                    {isCreator && <NavLink to={`/campaigns/edit/${campaign.id}`} className="btn">Редагувати кампанію</NavLink>}
+                    <div className="div-details-buttons">
+                        <NavLink to={`/campaigns/donate/${campaign.id}` } className="btn btn-details-donate">Підтримати</NavLink>
+                        {isCreator && <button onClick={() => handleDelete()} className="btn btn-details-close">Закрити кампанію</button>}
+                        {isCreator && <NavLink to={`/campaigns/edit/${campaign.id}`} className="btn btn-details-edit">Редагувати кампанію</NavLink>}
+                    </div>
                     
                 </div>
             </div>
+
+            <hr className="hr-details-main"/>
             
-            <div>
-                <div>
-                    <div>{campaign.description}</div>
-                    {images.length > 0 && <div>{images}</div>}
+            <div className="div-details-description-info">
+                <div className="div-details-description">
+                    <div className="div-details-text">{campaign.description}</div>
+                    {images.length > 0 && <hr className="hr-details-description"/>}
+                    {images.length > 0 && <div className="div-details-images-container">{images.map((image, index) => (
+                        <div key={index} className="div-details-image">{image}</div>
+                    ))}</div>
+                    }
                 </div>
-                <div>
+                <div className="div-details-donations">
                     <DonationCampaignList campaignId={campaign.id} />
                 </div>
             </div>
