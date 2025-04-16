@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.div-campaign-form {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    width: 75%;
+}
+
+.div-campaign-form-container {
+    padding: 20px;
+}
+
+.input-campaign {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.input-campaign:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+.btn-campaign-submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    opacity: 0.9;
+}
+
+.btn-campaign-submit:hover {
+    opacity: 1;
+}
