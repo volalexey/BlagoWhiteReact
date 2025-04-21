@@ -22,7 +22,7 @@ export const Register = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="div-auth-container">
                 <h1>Реєстрація</h1>
-                <hr />
+                
                 <div>
                     <label htmlFor="name">Ім'я (логін)</label>
                     <input className="input-auth" {...register("name")} type="text" id="name"  placeholder="Enter Name" required />
@@ -36,7 +36,6 @@ export const Register = () => {
                     <input className="input-auth" {...register("password")} type="password" id="password" placeholder="Enter Password" required />
                 </div>
 
-                <hr />
 
                 <button type="submit" className="btn btn-auth-submit">Зареєструватись</button>
             </div>

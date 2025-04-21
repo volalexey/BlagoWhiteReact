@@ -1,0 +1,78 @@
+.donation-form-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 32px 24px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+
+    form{
+        width: 100%;
+    }
+}
+
+.donation-header h1 {
+    margin: 0;
+    font-size: 2rem;
+
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.donation-header h2 {
+    margin: 8px 0 24px 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.donation-form-input,
+.donation-form-container form>div {
+    margin-bottom: 18px;
+}
+
+.donation-form-input label,
+.donation-form-container form label {
+    display: block;
+    margin-bottom: 6px;
+    color: #495057;
+    font-weight: 500;
+}
+
+.donation-form-input input,
+.donation-form-container form input[type="text"],
+.donation-form-container form input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1.5px solid;
+    border-radius: 8px;
+    background: #f8f9fa;
+    font-size: 1rem;
+    transition: border 0.2s;
+}
+
+.donation-form-input input:focus,
+.donation-form-container form input:focus {
+    border-color: #52b788;
+    outline: none;
+}
+
+.donation-form-container button[type="submit"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 0;
+    background: linear-gradient(90deg, #52b788 0%, #40916c 100%);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(64, 145, 108, 0.08);
+    transition: background 0.2s, transform 0.1s;
+}
+
+.donation-form-container button[type="submit"]:hover {
+    background: linear-gradient(90deg, #40916c 0%, #2d6a4f 100%);
+    transform: translateY(-2px) scale(1.02);
+}

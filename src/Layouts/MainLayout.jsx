@@ -6,27 +6,33 @@ import './MainLayout.css';
 
 const MainLayout = () => {
     const { isUserLoggedIn, user, Logout } = useContext(UserContext);
-    
-    return(
+
+    return (
         <div className='wrapper'>
             <header className="main-header">
                 <div className='header-navigation'>
-                    <NavLink to="/campaigns" className="btn btn-href">Перейти до кампаній</NavLink>
-                    <NavLink to="/campaigns/add" className="btn btn-href">Створити кампанію</NavLink>
-                </div>    
-                <div>
-                    {(!user && isUserLoggedIn()) ? <span className='user-name'>Завантаження...</span> : null}
-                    {user ? <span className='user-name'>Вітаємо, {user.name}!</span> : null}
-                    {isUserLoggedIn() ? <button onClick={() => Logout()} className="btn btn-exit">Вийти</button> : <NavLink to="/login" className="btn btn-register">Увійти</NavLink>}
+
+                    <div className="nav-campaign-buttons">
+                        <NavLink to="/campaigns" className="btn btn-href">Перейти до кампаній</NavLink>
+                        <NavLink to="/campaigns/add" className="btn btn-href">Створити кампанію</NavLink>
+                    </div>
+
+                    <div className="">
+                        {(!user && isUserLoggedIn()) ? <span className='user-name'>Завантаження...</span> : null}
+                        {user ? <span className='user-name'>Вітаємо, {user.name}!</span> : null}
+                        {isUserLoggedIn() ? <button onClick={() => Logout()} className="btn btn-exit">Вийти</button> : <NavLink to="/login" className="btn btn-register">Увійти</NavLink>}
+                    </div>
+
                 </div>
+
             </header>
             <main>
-                <Outlet/>
+                <Outlet />
             </main>
-            <footer>  
+            <footer>
                 <div className='footer-text'>© 2025 All rights reserved by me</div>
             </footer>
         </div>
     )
 }
-export {MainLayout};
+export { MainLayout };

@@ -75,8 +75,10 @@ export const CampaignForm = ({ type }) => {
                     <div>
                         <label htmlFor="category">Категорія</label>
                         <select className="input-campaign" id="category" {...register("category")}>
-                            <option value="Blabalbla">Blabalbla</option>
-                            <option value="Blebleble">Blebleble</option>
+                            <option value="Тварини">Тварини</option>
+                            <option value="Ветерани">Ветерани</option>
+                            <option value="Діти">Діти</option>
+                            <option value="Ліки">Ліки</option>
                         </select>
                     </div>
                     <div>

@@ -1,17 +1,18 @@
-import {  useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useContext, useEffect, useState } from "react";
 import { DonationContext } from "../../Context/DonationContext";
 import { CampaignsContext } from "../../Context/CampaignsContext";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from '../../Context/UserContext';
+import "./Style/DonationForm.css";
 
-export const DonationForm= ({campaignId}) =>{
+export const DonationForm = ({ campaignId }) => {
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
     const [campaign, setCampaign] = useState({});
     const { addDonation } = useContext(DonationContext);
     const { getCampaignById } = useContext(CampaignsContext);
-    const {user} = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     const onSubmit = (values) => {
         handleAdd(values);
@@ -43,28 +44,28 @@ export const DonationForm= ({campaignId}) =>{
         navigate(`/campaigns/${campaign.id}`);
     }
 
-    if(!campaign) {
+    if (!campaign) {
         return <div>Loading...</div>;
     }
     return (
-        <div>
-            <div>
+        <div className="donation-form-container">
+            <div className="donation-header">
                 <h1>Donation</h1>
                 <h2>{campaign.name}</h2>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-            <div >
-                <label htmlFor="amount">Amount</label>
-                <input type="number" {...register("amount")} />
-            </div>
-            <div>
-                <label htmlFor="message">Message</label>
-                <input type="text" {...register("message")}  />
-            </div>
-            <button type="submit">Donate</button>
-        </form>
+                <div className="donation-form-input">
+                    <label htmlFor="amount">Amount</label>
+                    <input type="number" {...register("amount")} />
+                </div>
+                <div>
+                    <label htmlFor="message">Message</label>
+                    <input type="text" {...register("message")} />
+                </div>
+                <button type="submit">Donate</button>
+            </form>
         </div>
-        
+
     );
 }
