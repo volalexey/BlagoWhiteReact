@@ -11,7 +11,6 @@ import { RequireAuth } from './Middleware/RequireAuth';
 import { UserProvider } from './Context/UserContext';
 import { AuthLogin } from './Pages/AuthLogin';
 
-
 function App() {
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<MainLayout />} >
@@ -21,7 +20,6 @@ function App() {
       <Route path="/campaigns/:id" element={<SimpleCampaign />} />
       <Route path="/campaigns/edit/:id" element={<EditCampaign />} />
       <Route path="/campaigns/donate/:id" element={<RequireAuth><AddDonation /></RequireAuth> } />
-
       <Route path="/login" element={<AuthLogin type={"login"} />} />
       <Route path="/register" element={<AuthLogin type={"register"} />} />
     </Route>
