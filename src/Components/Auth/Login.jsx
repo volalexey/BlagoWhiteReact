@@ -21,7 +21,7 @@ export const Login = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="div-auth-container">
                     <h1>Вхід</h1>
-                    
+                    <hr />
                     <div>
                         <label htmlFor="email">Пошта</label>
                         <input className="input-auth" {...register("email")} type="email" id="email"  placeholder="Enter Email" required />
@@ -31,6 +31,7 @@ export const Login = () => {
                         <input className="input-auth" {...register("password")} type="password" id="password" placeholder="Enter Password" required />
                     </div>
 
+                    <hr />
 
                     <button type="submit"  className="btn btn-auth-submit">Вхід</button>
                 </div>

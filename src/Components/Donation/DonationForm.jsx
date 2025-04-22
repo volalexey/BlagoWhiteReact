@@ -8,15 +8,11 @@ import "./Style/DonationForm.css";
 
 export const DonationForm = ({ campaignId }) => {
     const navigate = useNavigate();
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, watch } = useForm();
     const [campaign, setCampaign] = useState({});
-    const { addDonation } = useContext(DonationContext);
+    const { addDonation, checkoutDonation } = useContext(DonationContext);
     const { getCampaignById } = useContext(CampaignsContext);
     const { user } = useContext(UserContext);
-
-    const onSubmit = (values) => {
-        handleAdd(values);
-    }
 
     const fetchCampaign = async () => {
         if (campaignId) {
@@ -29,41 +25,26 @@ export const DonationForm = ({ campaignId }) => {
         fetchCampaign();
     }, [campaignId]);
 
-    const handleAdd = (values) => {
-        const donation = {
-            name: user.name,
-            campaignId: parseInt(campaign.id),
-            amount: parseInt(values.amount),
-            message: values.message,
-            email: user.email,
-            userId: user.id
-        }
-        addDonation(donation);
-        console.log(donation);
-
-        navigate(`/campaigns/${campaign.id}`);
-    }
-
     if (!campaign) {
         return <div>Loading...</div>;
     }
     return (
         <div className="donation-form-container">
             <div className="donation-header">
-                <h1>Donation</h1>
+                <h1>Підтримка</h1>
                 <h2>{campaign.name}</h2>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form>
                 <div className="donation-form-input">
-                    <label htmlFor="amount">Amount</label>
+                    <label htmlFor="amount">Кошти</label>
                     <input type="number" {...register("amount")} />
                 </div>
                 <div>
-                    <label htmlFor="message">Message</label>
+                    <label htmlFor="message">Повідомлення</label>
                     <input type="text" {...register("message")} />
                 </div>
-                <button type="submit">Donate</button>
+                <button type="button" onClick={() => checkoutDonation(watch("amount") || 100, campaignId, watch("message") || " ") }>Підтримати збір</button>
             </form>
         </div>
 

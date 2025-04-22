@@ -128,3 +128,12 @@
 .div-details-destination{
     text-align: right;
 }
+.div-details-closed{
+    margin: 0 auto;
+    background-color: rgb(71, 221, 71);
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+}

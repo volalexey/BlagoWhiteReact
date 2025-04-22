@@ -10,6 +10,7 @@ import { AddDonation } from './Pages/AddDonation';
 import { RequireAuth } from './Middleware/RequireAuth';
 import { UserProvider } from './Context/UserContext';
 import { AuthLogin } from './Pages/AuthLogin';
+import { ResultDonation } from './Pages/ResultDonation';
 
 function App() {
   const router = createBrowserRouter(createRoutesFromElements(
@@ -20,6 +21,7 @@ function App() {
       <Route path="/campaigns/:id" element={<SimpleCampaign />} />
       <Route path="/campaigns/edit/:id" element={<EditCampaign />} />
       <Route path="/campaigns/donate/:id" element={<RequireAuth><AddDonation /></RequireAuth> } />
+      <Route path="/campaigns/donate/checkout" element={<ResultDonation />} />
       <Route path="/login" element={<AuthLogin type={"login"} />} />
       <Route path="/register" element={<AuthLogin type={"register"} />} />
     </Route>
