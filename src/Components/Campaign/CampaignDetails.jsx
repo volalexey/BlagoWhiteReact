@@ -13,6 +13,8 @@ const CampaignDetails = ({ id }) => {
     const [loading, setLoading] = useState(true);
     const [date, setDate] = useState("");
 
+    const [isCampaignRaised, setIsCampaignRaised] = useState(false);
+
     const { user } = useContext(UserContext);
     const [isCreator, setIsCreator] = useState(false);
 
@@ -41,6 +43,7 @@ const CampaignDetails = ({ id }) => {
         const fetchData = async () => {
             const response = await getCampaignById(id);
             setCampaign(response);
+            setIsCampaignRaised(response.raised >= response.destination);
             setLoading(false);
 
 
@@ -97,7 +100,8 @@ const CampaignDetails = ({ id }) => {
                         </div>
                     </div>
                     <div className="div-details-buttons">
-                        <NavLink to={`/campaigns/donate/${campaign.id}`} className="btn btn-details-donate">Підтримати</NavLink>
+                        {!isCampaignRaised ? <NavLink to={`/campaigns/donate/${campaign.id}`} className="btn btn-details-donate">Підтримати</NavLink> :
+                            <div className="div-details-closed">Збір завершено</div>} 
                         {isCreator && <button onClick={() => handleDelete()} className="btn btn-details-close">Закрити кампанію</button>}
                         {isCreator && <NavLink to={`/campaigns/edit/${campaign.id}`} className="btn btn-details-edit">Редагувати кампанію</NavLink>}
                     </div>

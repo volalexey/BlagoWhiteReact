@@ -45,7 +45,7 @@ export const CampaignForm = ({ type }) => {
             category: values.category,
             createdAt: new Date().toISOString(),
             imageUrl: values.imageUrl,
-            socialUrls: values.socialUrls,
+            socialUrls: filterSocials(values.socialUrls),
             creatorId: user.id
         };
         addCampaign(campaign);
@@ -57,6 +57,13 @@ export const CampaignForm = ({ type }) => {
         editCampaign(updatedCampaign.id, updatedCampaign, user.id);
         navigate(`/campaigns/${updatedCampaign.id}`);
     };
+
+    const filterSocials = (socialUrls) => {
+        const socialUrlsArray = socialUrls.split(' ')
+            .map(url => url.trim())
+            .filter(url => url.startsWith('http://') || url.startsWith('https://'));
+        return socialUrlsArray.join(' ');
+    }
 
     return (
         <div className="div-campaign-form">

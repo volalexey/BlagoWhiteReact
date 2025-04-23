@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import "./Style/CampaignItem.css";
 import formatDate from "../../Utils/DateFormater";
 
-const CampaignItem = ({campaign}) => {
+const CampaignItem = ({campaign, isCampaignRaised}) => {
 
     const date = formatDate(campaign.createdAt);
 
@@ -28,7 +28,8 @@ const CampaignItem = ({campaign}) => {
 
                 <div className="div-campaign-info-bottom">
                     <NavLink to={`/campaigns/${campaign.id}`} className="btn-campaign-details btn">Детальніше</NavLink>
-                    <NavLink to={`/campaigns/donate/${campaign.id}`} className="btn-campaign-donate btn">Підтримати</NavLink>
+                    {!isCampaignRaised ? <NavLink to={`/campaigns/donate/${campaign.id}`} className="btn-campaign-donate btn">Підтримати</NavLink>:
+                        <div className="div-details-item-closed">Збір завершено</div>}
                 </div>
             </div>
         </li>

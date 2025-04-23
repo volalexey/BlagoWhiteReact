@@ -8,7 +8,7 @@ const CampaignList = () => {
     console.log(campaigns)
     return (
         <ul className="campaign-list">
-            {campaigns.map(campaign => <CampaignItem key={campaign.id} campaign={campaign} />)}
+            {campaigns.map(campaign => <CampaignItem key={campaign.id} campaign={campaign} isCampaignRaised={campaign.raised >= campaign.destination} />)}
         </ul>
     )
 }
