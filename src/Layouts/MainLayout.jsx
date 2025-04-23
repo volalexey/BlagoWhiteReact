@@ -1,11 +1,14 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/UserContext';
 import { useContext } from 'react';
 import './MainLayout.css';
 
 const MainLayout = () => {
     const { isUserLoggedIn, user, Logout } = useContext(UserContext);
+    
+    const navigate = useNavigate();
+
 
     return (
         <div className='wrapper'>
@@ -20,7 +23,7 @@ const MainLayout = () => {
                     <div className="">
                         {(!user && isUserLoggedIn()) ? <span className='user-name'>Завантаження...</span> : null}
                         {user ? <span className='user-name'>Вітаємо, {user.name}!</span> : null}
-                        {isUserLoggedIn() ? <button onClick={() => Logout()} className="btn btn-exit">Вийти</button> : <NavLink to="/login" className="btn btn-register">Увійти</NavLink>}
+                        {isUserLoggedIn() ? <button onClick={() => navigate('/profile')} className="btn btn-exit">Профіль</button> : <NavLink to="/login" className="btn btn-register">Увійти</NavLink>}
                     </div>
 
                 </div>

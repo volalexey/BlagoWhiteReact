@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
+import { set } from 'react-hook-form';
 
 export const CampaignsContext = createContext();
 
@@ -60,12 +61,25 @@ export const CampaignProvider = ({ children }) => {
         }
     }
 
+    //get campaigns by userId
+    const fetchCampaignsByUserId = async (userId) => {
+        try{
+            setCampaigns([]);
+            
+            const response = await axios.get(`http://localhost:5211/api/campaigns/user/${userId}`);
+            setCampaigns(response.data);
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
+
     useEffect(() => {
         fetchdata();
     }, []);
 
     return (
-        <CampaignsContext.Provider value={{ campaigns, addCampaign, deleteCampaign, getCampaignById, editCampaign }}>
+        <CampaignsContext.Provider value={{ campaigns, addCampaign, deleteCampaign, getCampaignById, fetchCampaignsByUserId, editCampaign }}>
             {children}
         </CampaignsContext.Provider>
 
