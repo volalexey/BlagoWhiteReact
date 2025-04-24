@@ -5,6 +5,8 @@ const AchievementCircle = ({ size = 50, strokeWidth = 7, progress = 0.75, color 
     const circumference = 2 * Math.PI * radius;
     const offset = circumference * (1 - progress);
 
+    
+
     return (
         <svg width={size} height={size}>
             <circle

@@ -3,20 +3,29 @@ import './Style/UserProfile.css';
 import { UserContext } from '../Context/UserContext';
 import { CampaignsContext } from '../Context/CampaignsContext';
 import AchievementCircle from '../Components/Profile/AchievementCircle';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 const UserProfile = () => {
 
-    const { user, Logout } = useContext(UserContext);
+    const { user, Logout, StoreUser } = useContext(UserContext);
+
     const { deleteCampaign } = useContext(CampaignsContext);
     const [campaigns, setCampaigns] = useState([]);
 
+    const [achievements, setAchievements] = useState([]);
+
+
+    // Get user from local storage
+    const userFromStorage = JSON.parse(localStorage.getItem('user'));
 
     useEffect(() => {
         if (!user) {
             console.log('User not found');
             return;
         }
+
+
         axios.get(`http://localhost:5211/api/campaigns/user/${user.id}`)
             .then(response => {
                 setCampaigns(response.data);
@@ -24,7 +33,19 @@ const UserProfile = () => {
             .catch(error => {
                 console.error('Error fetching campaigns:', error);
             });
+
+
+        axios.get(`http://localhost:5211/api/users/achievements/${user.id}`)
+            .then(response => {
+                setAchievements(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching achievements:', error);
+            });
+
+
     }, [user]);
+
 
 
     const handleDelete = async (campaign) => {
@@ -32,8 +53,29 @@ const UserProfile = () => {
         window.location.reload();
     }
 
-    const saveChanges = async () => {
+    const saveChanges = async (e) => {
 
+        e.preventDefault();
+
+        axios.put(`http://localhost:5211/api/users/${user.id}`, {
+            email: document.getElementById('email').value,
+            name: document.getElementById('name').value,
+            password: document.getElementById('password').value 
+                !== user.password 
+                || document.getElementById('password').value === "" 
+                ? document.getElementById('password').value 
+                : user.password,
+        })
+        .then(response => {
+            
+            console.log('User updated successfully:', response.data);
+            
+            StoreUser(response.data);
+            window.location.reload();
+        })
+        .catch(error => {
+            console.error('Error updating user:', error);
+        });
     }
 
     return (
@@ -67,8 +109,10 @@ const UserProfile = () => {
                 <div className="user-profile-campaigns">
                     <h1>Campaigns</h1>
                     <div className="campaigns-list">
-                        {campaigns && campaigns.map(campaign => {
+                        {campaigns && campaigns.length > 0 && campaigns.map(campaign => {
+
                             // Calculate progress percentage
+
                             const progress = Math.min(
                                 Math.round((campaign.raised / campaign.destination) * 100),
                                 100
@@ -77,8 +121,6 @@ const UserProfile = () => {
                             return (
                                 <div key={campaign.id} className="campaign-item">
                                     <div className="campaign-image-and-slider">
-
-
                                         <img src={campaign.imageUrl} alt="Campaign" />
                                         <div className="progress-bar">
                                             <div
@@ -91,11 +133,13 @@ const UserProfile = () => {
                                             <p>{campaign.destination}</p>
                                         </div>
                                     </div>
-                                    <div className="campaign-content">
-                                        <h2>{campaign.name}</h2>
+                                    <div className="campaign-name-desc-and-buttons">
+                                        <h3>{campaign.name}</h3>
                                         <p>{campaign.description}</p>
-                                        <div className="funding-details">
-                                            <button onClick={() => handleDelete(campaign)} className="btn btn-details-close">Закрити кампанію</button>
+                                        <div className="buttons">
+
+                                            <NavLink to={`/campaigns/edit/${campaign.id}`} className="btn btn-details-edit">Редагувати</NavLink>
+                                            <button className='control-button delete' onClick={() => handleDelete(campaign)}>Закрити</button>
                                         </div>
                                     </div>
                                 </div>
@@ -109,22 +153,24 @@ const UserProfile = () => {
             <div className="user-profile-achievements">
                 <h1>Досягнення</h1>
                 <div className="achievements-list">
-                    <div className="achievement-item">
-                        <h3>Зробити 10 донатів <br /> (3/10)</h3>
-                        <AchievementCircle progress={3 / 10} />
-                    </div>
-                    <div className="achievement-item">
-                        <h3>Задонатити сумарно 10000 гривень <br /> (4352)</h3>
-                        <AchievementCircle progress={4352 / 10000} />
-                    </div>
-                    <div className="achievement-item">
-                        <h3>Підтримати по одній кампанії з кожної категорії <br /> (2/4)</h3>
-                        <AchievementCircle progress={2 / 4} />
-                    </div>
-                    <div className="achievement-item">
-                        <h3>Створити 10 кампаній <br /> (1/10)</h3>
-                        <AchievementCircle progress={1 / 10} />
-                    </div>
+
+                    {achievements && achievements.map((achievement, index) => {
+
+                        const progress = achievement.currentValue / achievement.achievement.destination;
+
+                        return (
+                            <div key={index} className='achievement-item'>
+                                <div className="achievement-name-and-desc">
+                                    <h3>{achievement.achievement.name}
+                                        <span className='achievement-value'> {achievement.currentValue}/{achievement.achievement.destination}</span>
+                                        {progress >= 1 && <span className='achievement-completed'> ВИКОНАНО!</span>}
+                                    </h3>
+                                    <p>{achievement.achievement.description}</p>
+                                </div>
+                                <AchievementCircle progress={progress} />
+                            </div>
+                        )
+                    })}
 
                 </div>
             </div>
