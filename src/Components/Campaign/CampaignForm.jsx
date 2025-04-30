@@ -7,8 +7,10 @@ import './Style/CampaignForm.css';
 
 export const CampaignForm = ({ type }) => {
     const navigate = useNavigate();
-    const { register, handleSubmit, setValue } = useForm();
+    const { register, handleSubmit, setValue, watch } = useForm();
     const [campaign, setCampaign] = useState({});
+
+    const photoFiles = watch("socialUrls");
 
     const { user } = useContext(UserContext);
     const { addCampaign, getCampaignById, editCampaign } = useContext(CampaignsContext);
@@ -45,16 +47,16 @@ export const CampaignForm = ({ type }) => {
             category: values.category,
             createdAt: new Date().toISOString(),
             imageUrl: values.imageUrl,
-            socialUrls: filterSocials(values.socialUrls),
+            socialUrls: [],
             creatorId: user.id
         };
-        addCampaign(campaign);
+        addCampaign(campaign, photoFiles);
         navigate('/campaigns');
     };
 
     const handleEdit = (values) => {
         const updatedCampaign = { ...campaign, ...values };
-        editCampaign(updatedCampaign.id, updatedCampaign, user.id);
+        editCampaign(updatedCampaign.id, updatedCampaign, user.id, photoFiles);
         navigate(`/campaigns/${updatedCampaign.id}`);
     };
 
@@ -97,8 +99,8 @@ export const CampaignForm = ({ type }) => {
                         <input className="input-campaign" type="text" id="imageUrl" {...register("imageUrl", { required: true })} />
                     </div>
                     <div>
-                        <label htmlFor="socialUrls">Social URLs</label>
-                        <input className="input-campaign" type="text" id="socialUrls" {...register("socialUrls", { required: true })} />
+                        <label htmlFor="socialUrls">Social Images</label>
+                        <input className="input-campaign" type="file" multiple accept='image/*' id="socialUrls" {...register("socialUrls", { required: true })} />
                     </div>
                     <hr />
                     <button className="btn btn-campaign-submit" type="submit">

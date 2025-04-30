@@ -8,8 +8,20 @@ export const CampaignProvider = ({ children }) => {
     const [campaigns, setCampaigns] = useState([]);
 
     //add campaign
-    const addCampaign = async (campaign) => {
+    const addCampaign = async (campaign, photos) => {
+        console.log(1);
+        console.log(photos + " 132131");
         try{
+            for (const photo of photos) {
+                const formData = new FormData();
+                formData.append('image', photo);
+                const res = await axios.post('http://localhost:5211/images/upload', formData)
+                campaign.socialUrls.push(res.data.url);
+            };
+
+            campaign.socialUrls = campaign.socialUrls.join(' ');
+            console.log(campaign.socialUrls + " 132131");
+            //
             const responce = await axios.post('http://localhost:5211/api/campaigns', campaign);
             setCampaigns([...campaigns, responce.data]);
         }
@@ -40,7 +52,7 @@ export const CampaignProvider = ({ children }) => {
     }
 
     //edit campaign
-    const editCampaign = async (id, updatedCampaign, userId) => {
+    const editCampaign = async (id, updatedCampaign, userId, photos) => {
         try{
             const response = await axios.put(`http://localhost:5211/api/campaigns/${id}?userId=${userId}`, updatedCampaign);
             setCampaigns(campaigns.map(campaign => campaign.id === id ? response.data : campaign));
