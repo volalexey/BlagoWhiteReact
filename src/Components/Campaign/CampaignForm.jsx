@@ -11,6 +11,7 @@ export const CampaignForm = ({ type }) => {
     const [campaign, setCampaign] = useState({});
 
     const photoFiles = watch("socialUrls");
+    const mainImage = watch("imageUrl");
 
     const { user } = useContext(UserContext);
     const { addCampaign, getCampaignById, editCampaign } = useContext(CampaignsContext);
@@ -46,26 +47,19 @@ export const CampaignForm = ({ type }) => {
             destination: parseInt(values.destination),
             category: values.category,
             createdAt: new Date().toISOString(),
-            imageUrl: values.imageUrl,
+            imageUrl: [],
             socialUrls: [],
             creatorId: user.id
         };
-        addCampaign(campaign, photoFiles);
+        addCampaign(campaign, photoFiles, mainImage);
         navigate('/campaigns');
     };
 
     const handleEdit = (values) => {
         const updatedCampaign = { ...campaign, ...values };
-        editCampaign(updatedCampaign.id, updatedCampaign, user.id, photoFiles);
+        editCampaign(updatedCampaign.id, updatedCampaign, user.id, photoFiles, mainImage);
         navigate(`/campaigns/${updatedCampaign.id}`);
     };
-
-    const filterSocials = (socialUrls) => {
-        const socialUrlsArray = socialUrls.split(' ')
-            .map(url => url.trim())
-            .filter(url => url.startsWith('http://') || url.startsWith('https://'));
-        return socialUrlsArray.join(' ');
-    }
 
     return (
         <div className="div-campaign-form">
@@ -95,8 +89,8 @@ export const CampaignForm = ({ type }) => {
                         <input className="input-campaign" type="number" id="destination" {...register("destination", { required: true })} />
                     </div>
                     <div>
-                        <label htmlFor="imageUrl">Image URL</label>
-                        <input className="input-campaign" type="text" id="imageUrl" {...register("imageUrl", { required: true })} />
+                        <label htmlFor="imageUrl">Image</label>
+                        <input className="input-campaign" type="file" accept='image/*' id="imageUrl" {...register("imageUrl", { required: true })} />
                     </div>
                     <div>
                         <label htmlFor="socialUrls">Social Images</label>
