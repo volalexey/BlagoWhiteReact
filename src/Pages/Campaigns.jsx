@@ -6,7 +6,6 @@ const Campaigns = () => {
     return (
         <CampaignProvider >
             <div className="div-campaigns">
-                <h1>Наші кампанії</h1>
                 <CampaignList />
             </div>
         </CampaignProvider>

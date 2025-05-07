@@ -3,15 +3,21 @@
     flex-direction: column;
     justify-content: center;
 
-    padding: 20px;
+    padding: 20px 0px;
 
     width: 80%;
+    min-height: calc(100vh - (104px + 68px));
     margin: 0 auto;
+    border-left: 5px solid #1e6091;
+    border-right: 5px solid #1e6091;
+
+    background-color: white;
 }
 
 .div-details-main-info {
     display: grid;
     grid-template-columns: 3fr 4fr;
+    padding: 0 20px;
 }
 
 .img-details-main-info {
@@ -19,6 +25,94 @@
     max-height: 300px;
     object-fit: cover;
     border-radius: 10px;
+}
+
+.hr-details-main {
+    margin: 15px auto;
+    width: 100% ;
+    border: 3px solid #34a0a4;
+}
+
+/*description*/
+.div-details-description-info {
+    /* width: 90%; */
+    margin: auto 0;
+    display: flex;
+    gap: 20px;
+    border-top: 5px solid #34a0a4;
+}
+
+.div-details-description {
+
+    flex: 3;
+
+    width: 100%;
+    margin: 0 5px;
+    min-height: 200px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+
+    
+
+    padding: 0 20px;
+}
+
+.hr-details-description {
+    margin: 15px auto;
+    width: 90%;
+    border: 2px solid #34a0a4;
+    border-radius: 2px;
+}
+
+.div-details-images-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.div-details-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    
+}
+
+.img-details-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 5px solid #34a0a4;
+}
+
+.div-details-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    margin: 10px;
+}
+
+.div-details-donations {
+    flex: 1;
+    width: 100%;
+    min-height: 200px;
+    background-color: white;
+
+    border-left: 5px solid #34a0a4;
+    border-bottom: 5px solid #34a0a4;
+}
+.div-details-item-closed{
+    display: flex;
+    align-items: center;
+    background-color: #4e705f;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    height: 80%;
 }
 
 .div-details-main-info-text {
@@ -59,6 +153,10 @@
     margin: 10px 0;
 }
 
+.raised-and-destination>* {
+    font-size: 18px;
+}
+
 .div-details-raised-hr {
     margin: 5px 25px;
     width: 50%;
@@ -79,16 +177,29 @@
 }
 
 .btn-details-donate {
-    background-color: #81c700;
+        background-color: #81c700;
+        font-size: 18px;
+        padding: 10px 20px;
+        border-radius: 10px;
 }
 
 .btn-details-close {
-    background-color: #ff0000;
-    font-size: 16px;
+    background-color: #ff4039;
+    font-size: 18px;
+        padding: 10px 20px;
+        border-radius: 10px;
 }
 
 .btn-details-edit {
-    background-color: #ffae00;
+    background-color: #ffc400;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.btn-not-creator {
+    margin: 0 auto;
+    font-size: 22px;
 }
 
 .div-details-text {
@@ -130,7 +241,7 @@
 }
 .div-details-closed{
     margin: 0 auto;
-    background-color: rgb(71, 221, 71);
+    background-color: #4e705f;
     font-size: 20px;
     font-weight: bold;
     padding: 10px;

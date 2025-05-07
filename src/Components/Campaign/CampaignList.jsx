@@ -8,6 +8,7 @@ const CampaignList = () => {
     console.log(campaigns)
     return (
         <ul className="campaign-list">
+            <h1 className="h1-title">Наші кампанії</h1>
             {campaigns.map(campaign => <CampaignItem key={campaign.id} campaign={campaign} isCampaignRaised={campaign.raised >= campaign.destination} />)}
         </ul>
     )

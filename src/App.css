@@ -14,9 +14,12 @@ body {
 
 header,
 footer {
-  padding: 25px 20px;
-  background-color: #006064;
+  padding: 10px 0;
+  background-color: #1E6091;
   color: white;
+}
+footer{
+  padding: 25px 20px;
 }
 
 main {

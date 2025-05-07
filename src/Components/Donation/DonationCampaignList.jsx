@@ -20,7 +20,7 @@ const DonationCampaignList = ({campaignId}) => {
 
     return (
         <div className="donation-campaign-list">
-            <h2>Останні донати</h2>
+            <h2 className="h2-donation-title">Останні донати</h2>
             {donations.length === 0 ? <p>No donations yet.</p>
             :   <ul className="ul-donation-list">
                     {donations.map(donation => (

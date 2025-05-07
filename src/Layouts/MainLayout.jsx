@@ -3,6 +3,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/UserContext';
 import { useContext } from 'react';
 import './MainLayout.css';
+import logo from '../assets/logo.png';
 
 const MainLayout = () => {
     const { isUserLoggedIn, user, Logout } = useContext(UserContext);
@@ -13,6 +14,11 @@ const MainLayout = () => {
     return (
         <div className='wrapper'>
             <header className="main-header">
+                <div className="header-logo">
+                    <NavLink to="/">
+                        <img src={logo} alt="no" className='img-logo' />
+                    </NavLink>
+                </div>
                 <div className='header-navigation'>
 
                     <div className="nav-campaign-buttons">

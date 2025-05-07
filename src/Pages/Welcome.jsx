@@ -24,8 +24,8 @@ const Welcome = () => {
             <div className="who-we-are">
                 <h2 className='question'>Хто ми?</h2>
                 <div className="columns">
-                    <p>Ми, фонд зборів “БлагоДій”,<br /> допомагаємо всім,<br /> хто цього потребує.</p>
-                    <p>Наш фонд зібрав вже більше <br />10 млн. гривень на допомогу ЗСУ</p>
+                    <p>Ми, фонд зборів <br /> “БлагоДій”,<br/> допомагаємо всім,<br /> хто цього потребує.</p>
+                    <p>Наш фонд зібрав вже більше <br />10 млн. гривень на допомогу <br /> ЗСУ</p>
                     <p>Створюйте кампанії,<br />залучайте донорів та <br />долайте фінансові перешкоди <br />разом з нами!</p>
                 </div>
 
@@ -37,7 +37,7 @@ const Welcome = () => {
                 <div class="item top-left">Допомога<br />дітям</div>
                 <div class="item top-right">Підтримка<br />ветеранів</div>
 
-                <div class="center">Дій</div>
+                <div class="center"><NavLink to="/campaigns">Дій</NavLink></div>
 
                 <div class="item bottom-left">Придбання<br />ліків</div>
                 <div class="item bottom-right">Забезпечення<br />переселенців</div>

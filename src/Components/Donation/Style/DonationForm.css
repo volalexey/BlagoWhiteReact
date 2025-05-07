@@ -4,11 +4,17 @@
     padding: 32px 24px;
     background: #fff;
     border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    border: 5px solid #6ae0e47e;
+    box-shadow: 0 4px 24px #6ae0e4;
 
     form{
         width: 100%;
     }
+}
+
+.donation-header {
+    text-align: center;
+    margin-bottom: 32px;
 }
 
 .donation-header h1 {
@@ -44,7 +50,7 @@
     width: 100%;
     box-sizing: border-box;
     padding: 10px 12px;
-    border: 1.5px solid;
+    border: 3px solid #d4d4d4;
     border-radius: 8px;
     background: #f8f9fa;
     font-size: 1rem;
@@ -75,4 +81,18 @@
 .donation-form-container button[type="submit"]:hover {
     background: linear-gradient(90deg, #40916c 0%, #2d6a4f 100%);
     transform: translateY(-2px) scale(1.02);
+}
+
+.btn-donation-form{
+    font-size: 30px;
+    background: #81c700;
+    border-radius: 25px;
+    margin: 0 auto;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-donation-form:hover {
+    background: #4bc028;
+    transform: scale(1.05);
 }

@@ -4,7 +4,6 @@ import CampaignForm from "../Components/Campaign/CampaignForm";
 const AddCampaign = () =>{
     return(
         <CampaignProvider>
-            <h1>Додавання кампаній</h1>
             <CampaignForm type={'add'}/>
         </CampaignProvider>
 

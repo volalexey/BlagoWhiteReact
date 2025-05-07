@@ -7,7 +7,6 @@ const EditCampaign = () =>{
 
     return(
         <CampaignProvider>
-            <h1>Редагування кампанії</h1>
             <CampaignForm type={params.id}/>
         </CampaignProvider>
 

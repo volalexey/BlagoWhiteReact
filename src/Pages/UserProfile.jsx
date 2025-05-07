@@ -107,7 +107,7 @@ const UserProfile = () => {
                 </div>
 
                 <div className="user-profile-campaigns">
-                    <h1>Campaigns</h1>
+                    <h1>Ваші Кампанії</h1>
                     <div className="campaigns-list">
                         {campaigns && campaigns.length > 0 && campaigns.map(campaign => {
 
@@ -148,6 +148,8 @@ const UserProfile = () => {
                     </div>
                 </div>
             </div>
+
+            <hr className="hr-profile-main"/>
 
 
             <div className="user-profile-achievements">

@@ -44,7 +44,7 @@ export const DonationForm = ({ campaignId }) => {
                     <label htmlFor="message">Повідомлення</label>
                     <input type="text" {...register("message")} />
                 </div>
-                <button type="button" onClick={() => checkoutDonation(watch("amount") || 100, campaignId, watch("message") || " ") }>Підтримати збір</button>
+                <button type="button" className="btn btn-donation-form" onClick={() => checkoutDonation(watch("amount") || 100, campaignId, watch("message") || " ") }>Підтримати збір</button>
             </form>
         </div>
 

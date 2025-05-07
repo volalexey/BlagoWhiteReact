@@ -68,38 +68,41 @@ export const CampaignForm = ({ type }) => {
                     <h1>{type === 'add' ? "Створити кампанію" : "Редагувати кампанію"}</h1>
                     <hr />
                     <div>
-                        <label htmlFor="name">Назва</label>
-                        <input className="input-campaign" type="text" id="name" placeholder="Name" {...register("name", { required: true })} />
+                        <div>
+                            <label htmlFor="name">Назва</label>
+                            <input className="input-campaign" type="text" id="name" placeholder="Name" {...register("name", { required: true })} />
+                        </div>
+                        <div>
+                            <label htmlFor="description">Опис</label>
+                            <textarea className="input-campaign" id="description" placeholder="Input some information..." {...register("description", { required: true, maxLength: 500 })}></textarea>
+                        </div>
+                        <div>
+                            <label htmlFor="category">Категорія</label>
+                            <select className="input-campaign" id="category" {...register("category")}>
+                                <option value="Тварини">Тварини</option>
+                                <option value="Ветерани">Ветерани</option>
+                                <option value="Діти">Діти</option>
+                                <option value="Ліки">Ліки</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label htmlFor="destination">Ціль</label>
+                            <input className="input-campaign" type="number" id="destination" {...register("destination", { required: true })} />
+                        </div>
+                        <div>
+                            <label htmlFor="imageUrl">Image</label>
+                            <input className="input-campaign" type="file" accept='image/*' id="imageUrl" {...register("imageUrl", { required: true })} />
+                        </div>
+                        <div>
+                            <label htmlFor="socialUrls">Social Images</label>
+                            <input className="input-campaign" type="file" multiple accept='image/*' id="socialUrls" {...register("socialUrls", { required: true })} />
+                        </div>
+                        <hr />
+                        <button className="btn btn-campaign-submit" type="submit">
+                            {type === 'add' ? "Створити" : "Оновити"}
+                        </button>
                     </div>
-                    <div>
-                        <label htmlFor="description">Опис</label>
-                        <textarea className="input-campaign" id="description" placeholder="Input some information..." {...register("description", { required: true, maxLength: 500 })}></textarea>
-                    </div>
-                    <div>
-                        <label htmlFor="category">Категорія</label>
-                        <select className="input-campaign" id="category" {...register("category")}>
-                            <option value="Тварини">Тварини</option>
-                            <option value="Ветерани">Ветерани</option>
-                            <option value="Діти">Діти</option>
-                            <option value="Ліки">Ліки</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label htmlFor="destination">Ціль</label>
-                        <input className="input-campaign" type="number" id="destination" {...register("destination", { required: true })} />
-                    </div>
-                    <div>
-                        <label htmlFor="imageUrl">Image</label>
-                        <input className="input-campaign" type="file" accept='image/*' id="imageUrl" {...register("imageUrl", { required: true })} />
-                    </div>
-                    <div>
-                        <label htmlFor="socialUrls">Social Images</label>
-                        <input className="input-campaign" type="file" multiple accept='image/*' id="socialUrls" {...register("socialUrls", { required: true })} />
-                    </div>
-                    <hr />
-                    <button className="btn btn-campaign-submit" type="submit">
-                        {type === 'add' ? "Створити" : "Оновити"}
-                    </button>
+                    
                 </div>
             </form>
         </div>

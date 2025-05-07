@@ -12,7 +12,6 @@ const CampaignItem = ({campaign, isCampaignRaised}) => {
         <li className="div-campaign-item">
             <div className="div-campaign-item-image">
                 <img src={campaign.imageUrl} alt="Popa" className="img-campaign-item-image" />
-                <hr className="hr-image-raised"/>
                 <div className="div-raised">
                     <div>Зібрано: <span>{campaign.raised}</span></div>
                     <div>Ціль: <span>{campaign.destination}</span></div>

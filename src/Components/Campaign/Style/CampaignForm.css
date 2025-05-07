@@ -14,6 +14,9 @@ form {
 }
 
 .div-campaign-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
 }
 
@@ -23,6 +26,7 @@ form {
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
+    border-radius: 8px;
     box-sizing: border-box;
     resize: vertical;
 }
@@ -38,16 +42,18 @@ hr {
 }
 
 .btn-campaign-submit {
-    background-color: #4CAF50;
+    background-color: #81c700;
     color: white;
     padding: 16px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 30%;
-    opacity: 0.9;
+    width: 100%;
+
+    transition: all 0.2s ease-in-out;
 }
 
 .btn-campaign-submit:hover {
-    opacity: 1;
+    background: #4bc028;
+    transform: scale(1.05);
 }

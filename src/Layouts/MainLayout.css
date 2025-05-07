@@ -5,22 +5,39 @@
 }
 .btn-href{
     margin: 0 5px;
-    background-color: rgb(0, 162, 162);
+    background-color: #34A0A4;
 }
 .btn-exit{
     margin-left: 10px;
-    background-color: red;
-    font-size: 16px;
+    background-color: #34a0a4;
+    font-size: 18px;
 }
 .btn-register{
     margin-left: 10px;
     background-color: green;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .header-navigation{
-    width: 70%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0 30px;
     display: flex;
     justify-content: space-between;
+}
+.nav-campaign-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    font-size: 18px;
+}
+.img-logo{
+    width: 80px;
+    height: auto;
+    margin-left: 40px;
+}
+.user-name{
+    font-size: 20px;
+    color: #fff;
+    margin-right: 20px;
 }

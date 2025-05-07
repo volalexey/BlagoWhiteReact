@@ -1,6 +1,20 @@
 .campaign-list{
+    display: flex   ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 80%;
     list-style: none;
     padding: 0;
     margin: auto;
+}
+.h1-title{
+    font-size: 2rem;
+    color: white;
+    margin: 20px 0px;
+    background-color: #34a0a4;
+    font-size: 18px;
+    padding: 15px 20px;
+    border-radius: 25px;
+    box-shadow: 0 0 30px #34a0a4;
 }
